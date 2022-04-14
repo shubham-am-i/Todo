@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO</title>
+
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Mochiy+Pop+P+One&family=Montserrat:ital,wght@0,400;0,500;0,600;1,700&family=Sacramento&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- todo list and heading -->
+   <div class="image"></div>
+    <div class="box" id="heading">
+        <h1><%=listTitle%></h1>
+    </div>
+
+    <!-- links for custom todos -->
+    <div class="tabs">
+         <a href="/work">Work</a>
+         <a href="/">Personal</a>
+         <a href="/fitness">Fitness</a>
+         <a href="/other">Other</a>
+    </div>
+
+
+    <!-- todo displayed -->
+    <div class="box">
+            <% newListItem.forEach(function(list){ %>
+                <form action="/delete" method="post">
+                    <div class="item">
+                        <input type="checkbox" name="checkbox" value="<%= list._id %>" onChange="this.form.submit()">
+                        <p><%= list.item %></p><span><%= list.date %></span>
+                    </div>
+                    <input type="hidden" name="listName" value="<%= listTitle %>"></input>
+                </form>
+            <% }) %>
+
+
+            <!-- accepting new todo -->
+            <form class="item" action="/" method="post">
+                <input type="text" name="newItem" placeholder="create new task" autocomplete="off" required>
+                <input type="date" name="date">
+                <button type="submit" name="list" value="<%= listTitle %>">+</button>
+            </form>
+    </div>
+
+   
+
+    
+</body>
+</html>
